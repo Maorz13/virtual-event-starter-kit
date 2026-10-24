@@ -18,6 +18,7 @@ import cn from 'classnames';
 import styleUtils from './utils.module.css';
 import styles from './hero.module.css';
 import { BRAND_NAME, DATE, SITE_DESCRIPTION } from '@lib/constants';
+import Countdown from './countdown';
 
 export default function Hero() {
   return (
@@ -53,6 +54,7 @@ export default function Hero() {
           <strong>Online</strong>
         </p>
       </div>
+      <Countdown />
     </div>
   );
 }
