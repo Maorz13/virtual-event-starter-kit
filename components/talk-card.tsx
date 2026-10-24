@@ -97,7 +97,7 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
         target="_blank"
         rel="noopener noreferrer"
       >
-        + Add to calendar
+        Add to calendar
       </a>
     </div>
   );
