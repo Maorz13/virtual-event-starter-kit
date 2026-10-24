@@ -20,6 +20,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { parseISO, format, isBefore, isAfter } from 'date-fns';
 import { Talk } from '@lib/types';
+import { SITE_NAME } from '@lib/constants';
 import styles from './talk-card.module.css';
 
 type Props = {
@@ -33,6 +34,9 @@ const formatDate = (date: string) => {
   return format(parseISO(date), "h:mmaaaaa'm'");
 };
 
+const toCalendarDate = (date: string) =>
+  parseISO(date).toISOString().replace(/[-:]|\.\d{3}/g, '');
+
 export default function TalkCard({ talk: { title, speaker, start, end }, showTime }: Props) {
   const [isTalkLive, setIsTalkLive] = useState(false);
   const [startAndEndTime, setStartAndEndTime] = useState('');
@@ -42,6 +46,13 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
     setIsTalkLive(isAfter(now, parseISO(start)) && isBefore(now, parseISO(end)));
     setStartAndEndTime(`${formatDate(start)} – ${formatDate(end)}`);
   }, [end, start]);
+
+  const calendarUrl = `https://calendar.google.com/calendar/render?${new URLSearchParams({
+    action: 'TEMPLATE',
+    text: `${title} · ${SITE_NAME}`,
+    dates: `${toCalendarDate(start)}/${toCalendarDate(end)}`,
+    details: speaker.map(s => s.name).join(', ')
+  }).toString()}`;
 
   const firstSpeakerLink = `/speakers/${speaker[0].slug}`;
 
@@ -80,6 +91,14 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
           </div>
         </div>
       </Link>
+      <a
+        className={styles['calendar-link']}
+        href={calendarUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        + Add to calendar
+      </a>
     </div>
   );
 }

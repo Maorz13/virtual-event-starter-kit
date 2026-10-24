@@ -18,6 +18,18 @@
   margin-bottom: 24px;
 }
 
+.calendar-link {
+  display: inline-block;
+  margin-top: var(--space-2x);
+  font-size: 14px;
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.calendar-link:hover {
+  color: var(--brand);
+}
+
 .time {
   color: var(--secondary-color);
   margin: 0 0 var(--space-2x);

@@ -18,6 +18,27 @@
   margin-top: var(--space-12x);
 }
 
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4x);
+  margin-bottom: var(--space-8x);
+  text-align: center;
+}
+
+.countdown-value {
+  font-size: 32px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary-color);
+}
+
 .hero {
   font-size: 52px;
   line-height: 1.15;
